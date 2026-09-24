@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interativo de Inglês - Question Words | SPFC Edition</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font - Montserrat / Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #f3f4f6;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* SPFC Palette Constants */
+        .bg-spfc-red { background-color: #e30613; }
+        .bg-spfc-black { background-color: #111111; }
+        .bg-spfc-card { background-color: #1e1e24; }
+        .border-spfc-red { border-color: #e30613; }
+        .text-spfc-red { color: #e30613; }
+
+        /* Custom Scrollbar for Sidebar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #18181b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e30613;
+            border-radius: 3px;
+        }
+
+        /* Animated Stripes Header Pattern */
+        .spfc-stripes {
+            background: linear-gradient(135deg, #e30613 0%, #e30613 33%, #ffffff 33%, #ffffff 66%, #000000 66%, #000000 100%);
+        }
+
+        .spfc-card-glow {
+            box-shadow: 0 10px 25px -5px rgba(227, 6, 19, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Button Pulse animation */
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .btn-pulse {
+            animation: pulse-subtle 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
+
+    <!-- HEADER / TRICOLOR BAR -->
+    <header class="w-full bg-zinc-900 border-b-4 border-red-600 shadow-xl sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <!-- SPFC Shield Icon Representation -->
+                <div class="w-12 h-12 bg-black border-2 border-white rounded-b-xl flex flex-col overflow-hidden shadow-lg items-center justify-between p-1">
+                    <div class="w-full h-1/2 bg-red-600 flex items-center justify-center font-black text-white text-xs tracking-widest">
+                        SPFC
+                    </div>
+                    <div class="w-full h-1/2 bg-white flex items-center justify-center">
+                        <i class="fa-solid font-black text-black text-xs">4ºANO</i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black tracking-wider text-white uppercase flex items-center gap-2">
+                        TRICOLOR <span class="text-red-600">QUIZ</span>
+                    </h1>
+                    <p class="text-xs text-zinc-400 font-medium">Question Words - Inglês 4º Ano</p>
+                </div>
+            </div>
+
+            <!-- Quiz Score Indicator (Visible during quiz) -->
+            <div id="top-score-badge" class="hidden sm:flex items-center bg-zinc-800 border border-zinc-700 px-4 py-2 rounded-full space-x-4">
+                <div class="text-center">
+                    <span class="block text-[10px] uppercase font-bold text-zinc-400">Progresso</span>
+                    <span id="progress-text" class="text-sm font-black text-white">0 / 20</span>
+                </div>
+                <div class="h-6 w-px bg-zinc-700"></div>
+                <div class="text-center">
+                    <span class="block text-[10px] uppercase font-bold text-zinc-400">Pontos</span>
+                    <span id="score-text" class="text-sm font-black text-red-500">0 pts</span>
+                </div>
+            </div>
+
+            <button id="sidebar-toggle-btn" class="hidden md:flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white px-3 py-2 rounded-lg text-sm font-semibold transition border border-zinc-700">
+                <i class="fa-solid fa-list-check text-red-500"></i>
+                <span>Mapa de Questões</span>
+            </button>
+        </div>
+        <!-- Tricolor Bar Accent -->
+        <div class="h-1.5 w-full flex">
+            <div class="w-1/3 bg-red-600"></div>
+            <div class="w-1/3 bg-white"></div>
+            <div class="w-1/3 bg-black"></div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 relative">
+        
+        <!-- SCREEN 1: WELCOME & GRAMMAR GUIDE -->
+        <section id="welcome-screen" class="max-w-4xl mx-auto space-y-8 animate-fade-in">
+            <!-- Banner Tricolor -->
+            <div class="relative overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 p-6 sm:p-8 spfc-card-glow text-center sm:text-left">
+                <div class="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div class="space-y-3">
+                        <span class="inline-block px-3 py-1 bg-red-600/20 text-red-400 border border-red-600/30 rounded-full text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-trophy mr-1"></i> Desafio Campeão
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                            Aprenda as <span class="text-red-500">Question Words</span> e Marque um Golaço!
+                        </h2>
+                        <p class="text-zinc-300 text-sm sm:text-base max-w-xl">
+                            Olá, Campeão do 4º Ano! Vamos reforçar o uso das palavras interrogativas em inglês. Prepare-se para o treino, confira as regras abaixo e depois mostre toda sua habilidade no quiz!
+                        </p>
+                    </div>
+                    <div class="shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-red-600 via-zinc-900 to-black p-1 shadow-2xl flex items-center justify-center">
+                            <div class="w-full h-full bg-zinc-900 rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-futbol text-4xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPLANATION CARDS (WHO, WHAT, HOW OLD, WHERE) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- WHO Card -->
+                <div class="bg-zinc-900 border-l-4 border-red-600 rounded-xl p-5 border-y border-r border-zinc-800 shadow-md hover:border-zinc-700 transition">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-8 h-8 rounded-lg bg-red-600/20 text-red-500 font-black flex items-center justify-center text-sm">1</span>
+                            <h3 class="text-xl font-bold text-white uppercase tracking-wide">WHO</h3>
+                        </div>
+                        <span class="bg-red-950 text-red-300 text-xs px-2.5 py-1 rounded-md font-semibold border border-red-800">Tradução: Quem</span>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4">Usado para perguntar sobre <strong class="text-zinc-200">pessoas</strong>.</p>
+                    <div class="bg-zinc-950 rounded-lg p-3 border border-zinc-800/80 space-y-1 text-sm">
+                        <p class="text-zinc-300 font-semibold"><span class="text-red-400">P:</span> "Who is he?"</p>
+                        <p class="text-emerald-400 font-medium"><span class="text-zinc-500">R:</span> "He is my teacher." <span class="text-zinc-500 text-xs">(Ele é meu professor.)</span></p>
+                    </div>
+                </div>
+
+                <!-- WHAT Card -->
+                <div class="bg-zinc-900 border-l-4 border-white rounded-xl p-5 border-y border-r border-zinc-800 shadow-md hover:border-zinc-700 transition">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-8 h-8 rounded-lg bg-white/20 text-white font-black flex items-center justify-center text-sm">2</span>
+                            <h3 class="text-xl font-bold text-white uppercase tracking-wide">WHAT</h3>
+                        </div>
+                        <span class="bg-zinc-800 text-zinc-200 text-xs px-2.5 py-1 rounded-md font-semibold border border-zinc-700">Tradução: O que / Qual</span>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4">Usado para perguntar sobre <strong class="text-zinc-200">coisas, objetos, ações ou escolhas</strong>.</p>
+                    <div class="bg-zinc-950 rounded-lg p-3 border border-zinc-800/80 space-y-1 text-sm">
+                        <p class="text-zinc-300 font-semibold"><span class="text-red-400">P:</span> "What is your favorite color?"</p>
+                        <p class="text-emerald-400 font-medium"><span class="text-zinc-500">R:</span> "It is red." <span class="text-zinc-500 text-xs">(É vermelho.)</span></p>
+                    </div>
+                </div>
+
+                <!-- HOW OLD Card -->
+                <div class="bg-zinc-900 border-l-4 border-red-600 rounded-xl p-5 border-y border-r border-zinc-800 shadow-md hover:border-zinc-700 transition">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-8 h-8 rounded-lg bg-red-600/20 text-red-500 font-black flex items-center justify-center text-sm">3</span>
+                            <h3 class="text-xl font-bold text-white uppercase tracking-wide">HOW OLD</h3>
+                        </div>
+                        <span class="bg-red-950 text-red-300 text-xs px-2.5 py-1 rounded-md font-semibold border border-red-800">Tradução: Quantos anos</span>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4">Usado para perguntar a <strong class="text-zinc-200">idade</strong> de alguém.</p>
+                    <div class="bg-zinc-950 rounded-lg p-3 border border-zinc-800/80 space-y-1 text-sm">
+                        <p class="text-zinc-300 font-semibold"><span class="text-red-400">P:</span> "How old are you?"</p>
+                        <p class="text-emerald-400 font-medium"><span class="text-zinc-500">R:</span> "I am 9 years old." <span class="text-zinc-500 text-xs">(Eu tenho 9 anos.)</span></p>
+                    </div>
+                </div>
+
+                <!-- WHERE Card -->
+                <div class="bg-zinc-900 border-l-4 border-zinc-400 rounded-xl p-5 border-y border-r border-zinc-800 shadow-md hover:border-zinc-700 transition">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-8 h-8 rounded-lg bg-zinc-800 text-zinc-300 font-black flex items-center justify-center text-sm">4</span>
+                            <h3 class="text-xl font-bold text-white uppercase tracking-wide">WHERE</h3>
+                        </div>
+                        <span class="bg-zinc-800 text-zinc-200 text-xs px-2.5 py-1 rounded-md font-semibold border border-zinc-700">Tradução: Onde</span>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4">Usado para perguntar sobre <strong class="text-zinc-200">lugares ou localizações</strong>.</p>
+                    <div class="bg-zinc-950 rounded-lg p-3 border border-zinc-800/80 space-y-1 text-sm">
+                        <p class="text-zinc-300 font-semibold"><span class="text-red-400">P:</span> "Where do you live?"</p>
+                        <p class="text-emerald-400 font-medium"><span class="text-zinc-500">R:</span> "I live in São Paulo." <span class="text-zinc-500 text-xs">(Eu moro em São Paulo.)</span></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Start Button Box -->
+            <div class="text-center pt-4 pb-8">
+                <button id="start-btn" class="btn-pulse inline-flex items-center justify-center gap-3 bg-gradient-to-r from-red-600 via-red-700 to-black hover:from-red-500 hover:to-zinc-900 text-white font-extrabold text-xl px-10 py-5 rounded-2xl shadow-2xl transition transform hover:-translate-y-1 border-2 border-red-500/50">
+                    <i class="fa-solid fa-play text-2xl text-white"></i>
+                    <span>START QUIZ</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: QUIZ INTERACTION AREA -->
+        <section id="quiz-screen" class="hidden grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+            
+            <!-- MAIN QUESTION PANEL (3 COLS ON LARGE DESKTOP) -->
+            <div class="lg:col-span-3 space-y-6">
+                
+                <!-- TOP CARD NAV & QUESTION TYPE BADGE -->
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex items-center justify-between shadow-md">
+                    <div class="flex items-center space-x-2">
+                        <span id="question-number-badge" class="bg-red-600 text-white font-black text-xs px-3 py-1.5 rounded-lg uppercase tracking-wider">
+                            Question 1 / 20
+                        </span>
+                        <span id="question-type-badge" class="bg-zinc-800 text-zinc-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-zinc-700">
+                            Multiple Choice
+                        </span>
+                    </div>
+
+                    <!-- Mobile Sidebar Toggle -->
+                    <button id="mobile-menu-btn" class="lg:hidden text-zinc-300 hover:text-white px-2 py-1 bg-zinc-800 rounded text-xs font-semibold">
+                        <i class="fa-solid fa-th"></i> Menu
+                    </button>
+                </div>
+
+                <!-- QUESTION CARD CONTENT -->
+                <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                    
+                    <!-- Question Prompt Header -->
+                    <div class="mb-6 space-y-2">
+                        <h3 id="question-title" class="text-xl sm:text-2xl font-bold text-white leading-snug">
+                            <!-- Question text injected here -->
+                        </h3>
+                        <p id="question-subtitle" class="text-xs sm:text-sm text-zinc-400 font-normal">
+                            <!-- Subtitle or context injected here -->
+                        </p>
+                    </div>
+
+                    <!-- MULTIPLE CHOICE OPTIONS CONTAINER (QUESTIONS 1-10) -->
+                    <div id="options-container" class="grid grid-cols-1 gap-3 my-6">
+                        <!-- Dynamic Options generated by JS -->
+                    </div>
+
+                    <!-- TEXT INPUT CONTAINER (QUESTIONS 11-20) -->
+                    <div id="text-input-container" class="hidden space-y-4 my-6">
+                        <label for="user-text-answer" class="block text-sm font-semibold text-zinc-300">
+                            Type your answer in English below:
+                        </label>
+                        <div class="relative">
+                            <input type="text" id="user-text-answer" placeholder="Ex: I am 9 years old..." 
+                                class="w-full bg-zinc-950 border-2 border-zinc-700 rounded-xl px-4 py-3.5 text-white font-medium focus:outline-none focus:border-red-600 transition shadow-inner">
+                        </div>
+                        <p id="input-hint" class="text-xs text-zinc-500 italic">
+                            Hint: Answer with complete sentences and check your spelling!
+                        </p>
+                    </div>
+
+                    <!-- SUBMIT BUTTON -->
+                    <div class="pt-4 border-t border-zinc-800/80 flex justify-end">
+                        <button id="confirm-btn" class="w-full sm:w-auto bg-red-600 hover:bg-red-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-extrabold text-base px-8 py-3.5 rounded-xl transition shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>CHECK</span>
+                        </button>
+                    </div>
+
+                    <!-- FEEDBACK DISPLAY BOX (Hidden until confirmed) -->
+                    <div id="feedback-box" class="hidden mt-6 p-5 rounded-xl border transition-all duration-300 space-y-2">
+                        <div class="flex items-center gap-3">
+                            <div id="feedback-icon-bg" class="w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                                <i id="feedback-icon" class="fa-solid"></i>
+                            </div>
+                            <h4 id="feedback-title" class="text-base font-bold"></h4>
+                        </div>
+                        <p id="feedback-text" class="text-sm leading-relaxed pl-11"></p>
+                    </div>
+
+                </div>
+
+                <!-- BOTTOM PREVIOUS / NEXT NAVIGATION BAR -->
+                <div class="flex items-center justify-between gap-4">
+                    <button id="prev-btn" class="bg-zinc-800 hover:bg-zinc-700 text-white font-bold px-6 py-3 rounded-xl border border-zinc-700 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed text-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Previous
+                    </button>
+
+                    <button id="next-btn" class="bg-zinc-800 hover:bg-zinc-700 text-white font-bold px-6 py-3 rounded-xl border border-zinc-700 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed text-sm">
+                        Next <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- SIDEBAR QUESTION NAVIGATION MAP (1 COL ON DESKTOP) -->
+            <aside id="sidebar-drawer" class="lg:block bg-zinc-900 border border-zinc-800 rounded-2xl p-5 space-y-4 shadow-xl">
+                <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+                    <h3 class="font-extrabold text-sm uppercase text-zinc-300 flex items-center gap-2">
+                        <i class="fa-solid fa-compass text-red-600"></i> Questions
+                    </h3>
+                    <span class="text-xs bg-zinc-800 text-zinc-400 px-2 py-0.5 rounded font-mono">1 - 20</span>
+                </div>
+
+                <!-- Grid of 20 Question Buttons -->
+                <div id="question-grid" class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-4 gap-2">
+                    <!-- JS injects 20 question navigation buttons -->
+                </div>
+
+                <!-- Legend -->
+                <div class="pt-3 border-t border-zinc-800/80 space-y-2 text-xs text-zinc-400">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-zinc-800 border border-zinc-600 inline-block"></span>
+                        <span>Pending</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-emerald-600 inline-block"></span>
+                        <span>Correct</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span>
+                        <span>Incorrect</span>
+                    </div>
+                </div>
+
+                <!-- Finish Quiz Early / Finalize Button -->
+                <div class="pt-2">
+                    <button id="finish-quiz-btn" class="w-full bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-zinc-300 font-bold py-2.5 px-3 rounded-xl text-xs transition uppercase tracking-wider flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-flag-checkered text-red-500"></i> Finish
+                    </button>
+                </div>
+            </aside>
+
+        </section>
+
+        <!-- SCREEN 3: RESULT & SCORE REPORT -->
+        <section id="results-screen" class="hidden max-w-3xl mx-auto space-y-8 animate-fade-in">
+            <div class="bg-zinc-900 border-2 border-red-600 rounded-3xl p-8 shadow-2xl text-center space-y-6 relative overflow-hidden">
+                <!-- Background Glow -->
+                <div class="absolute inset-0 bg-gradient-to-b from-red-600/10 via-transparent to-transparent pointer-events-none"></div>
+
+                <div class="inline-flex p-4 rounded-full bg-zinc-950 border border-red-600/40 text-red-500 shadow-inner">
+                    <i id="trophy-icon" class="fa-solid fa-trophy text-5xl"></i>
+                </div>
+
+                <div class="space-y-2">
+                    <h2 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-wider">
+                        GAME OVER, CHAMPION!
+                    </h2>
+                    <p id="performance-title" class="text-lg font-bold text-red-500">
+                        Excellent Performance!
+                    </p>
+                </div>
+
+                <!-- Score Stats Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 py-4">
+                    <div class="bg-zinc-950 border border-zinc-800 p-4 rounded-2xl">
+                        <span class="block text-xs text-zinc-400 font-semibold uppercase">Correct Answers</span>
+                        <span id="final-correct" class="text-3xl font-black text-emerald-400">0</span>
+                        <span class="text-xs text-zinc-500">out of 20</span>
+                    </div>
+                    <div class="bg-zinc-950 border border-zinc-800 p-4 rounded-2xl">
+                        <span class="block text-xs text-zinc-400 font-semibold uppercase">Accuracy</span>
+                        <span id="final-percentage" class="text-3xl font-black text-white">0%</span>
+                        <span class="text-xs text-zinc-500">precision rate</span>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1 bg-zinc-950 border border-zinc-800 p-4 rounded-2xl">
+                        <span class="block text-xs text-zinc-400 font-semibold uppercase">Total Score</span>
+                        <span id="final-score" class="text-3xl font-black text-red-500">0</span>
+                        <span class="text-xs text-zinc-500">tricolor points</span>
+                    </div>
+                </div>
+
+                <p id="performance-feedback" class="text-sm text-zinc-300 leading-relaxed max-w-lg mx-auto bg-zinc-950/60 p-4 rounded-xl border border-zinc-800">
+                    <!-- Dynamic feedback message -->
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <button id="restart-btn" class="w-full sm:w-auto bg-red-600 hover:bg-red-500 text-white font-extrabold px-8 py-3.5 rounded-xl transition shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider">
+                        <i class="fa-solid fa-rotate-right"></i> Restart
+                    </button>
+                    <button id="review-btn" class="w-full sm:w-auto bg-zinc-800 hover:bg-zinc-700 text-white font-bold px-8 py-3.5 rounded-xl border border-zinc-700 transition flex items-center justify-center gap-2 uppercase tracking-wider">
+                        <i class="fa-solid fa-magnifying-glass"></i> Review Answers
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full bg-zinc-950 border-t border-zinc-800 py-6 text-center text-xs text-zinc-500 mt-12">
+        <p>Quiz Pedagógico de Inglês - 4º Ano Ensino Fundamental | Edição Especial Tricolor</p>
+        <p class="mt-1 text-zinc-600">Desenvolvido com foco no aprendizado divertido e interativo.</p>
+    </footer>
+
+    <script>
+        /*
+         * QUIZ DATA STRUCTURE (20 Questions)
+         * 1 - 10: Multiple Choice (Randomized key sequence, no predictable A/B/C/D patterns)
+         * 11 - 15: Personal Writing (Intelligent Regex Smart Validation)
+         * 16 - 20: Fill in the Blanks
+         */
+        const questionsData = [
+            // Q1
+            {
+                id: 1,
+                type: 'mc',
+                title: '____ is your best friend?',
+                subtitle: 'Resposta recebida: "My best friend is Lucas."',
+                options: [
+                    { label: 'A', text: 'Where' },
+                    { label: 'B', text: 'Who' },
+                    { label: 'C', text: 'What' },
+                    { label: 'D', text: 'How old' }
+                ],
+                correctIndex: 1, // B
+                explanation: 'Usamos **WHO** (Quem) porque a pergunta é sobre uma pessoa (seu melhor amigo).'
+            },
+            // Q2
+            {
+                id: 2,
+                type: 'mc',
+                title: '____ do you live?',
+                subtitle: 'Resposta recebida: "I live in Brazil."',
+                options: [
+                    { label: 'A', text: 'How old' },
+                    { label: 'B', text: 'What' },
+                    { label: 'C', text: 'Where' },
+                    { label: 'D', text: 'Who' }
+                ],
+                correctIndex: 2, // C
+                explanation: 'Usamos **WHERE** (Onde) porque a pergunta é sobre um lugar ou localização (Brasil).'
+            },
+            // Q3
+            {
+                id: 3,
+                type: 'mc',
+                title: '____ is your favorite color?',
+                subtitle: 'Resposta recebida: "My favorite color is red."',
+                options: [
+                    { label: 'A', text: 'What' },
+                    { label: 'B', text: 'Who' },
+                    { label: 'C', text: 'Where' },
+                    { label: 'D', text: 'How old' }
+                ],
+                correctIndex: 0, // A
+                explanation: 'Usamos **WHAT** (Qual/O que) porque a pergunta é sobre uma preferência/objeto/coisa (cor favorita).'
+            },
+            // Q4
+            {
+                id: 4,
+                type: 'mc',
+                title: '____ are you?',
+                subtitle: 'Resposta recebida: "I am 9 years old."',
+                options: [
+                    { label: 'A', text: 'Where' },
+                    { label: 'B', text: 'What' },
+                    { label: 'C', text: 'Who' },
+                    { label: 'D', text: 'How old' }
+                ],
+                correctIndex: 3, // D
+                explanation: 'Usamos **HOW OLD** (Quantos anos) para perguntar a idade de alguém.'
+            },
+            // Q5
+            {
+                id: 5,
+                type: 'mc',
+                title: '____ is your English teacher?',
+                subtitle: 'Resposta recebida: "It is Mrs. Silva."',
+                options: [
+                    { label: 'A', text: 'Where' },
+                    { label: 'B', text: 'Who' },
+                    { label: 'C', text: 'How old' },
+                    { label: 'D', text: 'What' }
+                ],
+                correctIndex: 1, // B
+                explanation: 'Usamos **WHO** (Quem) porque estamos nos referindo a uma pessoa (a professora de inglês).'
+            },
+            // Q6
+            {
+                id: 6,
+                type: 'mc',
+                title: '____ is on the table?',
+                subtitle: 'Resposta recebida: "It is a pencil."',
+                options: [
+                    { label: 'A', text: 'Where' },
+                    { label: 'B', text: 'How old' },
+                    { label: 'C', text: 'What' },
+                    { label: 'D', text: 'Who' }
+                ],
+                correctIndex: 2, // C
+                explanation: 'Usamos **WHAT** (O que) porque a pergunta investiga um objeto sobre a mesa (um lápis).'
+            },
+            // Q7
+            {
+                id: 7,
+                type: 'mc',
+                title: '____ is the soccer stadium?',
+                subtitle: 'Resposta recebida: "It is in Morumbi."',
+                options: [
+                    { label: 'A', text: 'Where' },
+                    { label: 'B', text: 'Who' },
+                    { label: 'C', text: 'What' },
+                    { label: 'D', text: 'How old' }
+                ],
+                correctIndex: 0, // A
+                explanation: 'Usamos **WHERE** (Onde) porque se pergunta pelo local do estádio de futebol.'
+            },
+            // Q8
+            {
+                id: 8,
+                type: 'mc',
+                title: '____ is your brother?',
+                subtitle: 'Resposta recebida: "He is 10 years old."',
+                options: [
+                    { label: 'A', text: 'What' },
+                    { label: 'B', text: 'Where' },
+                    { label: 'C', text: 'How old' },
+                    { label: 'D', text: 'Who' }
+                ],
+                correctIndex: 2, // C
+                explanation: 'A pergunta quer saber a idade do irmão ("He is 10 years old"), logo a pergunta correta inicia com **HOW OLD**.'
+            },
+            // Q9
+            {
+                id: 9,
+                type: 'mc',
+                title: '____ is your favorite soccer player?',
+                subtitle: 'Resposta recebida: "It is Calleri."',
+                options: [
+                    { label: 'A', text: 'Where' },
+                    { label: 'B', text: 'Who' },
+                    { label: 'C', text: 'What' },
+                    { label: 'D', text: 'How old' }
+                ],
+                correctIndex: 1, // B
+                explanation: 'Usamos **WHO** (Quem) pois se refere a um jogador de futebol (uma pessoa).'
+            },
+            // Q10
+            {
+                id: 10,
+                type: 'mc',
+                title: '____ is your name?',
+                subtitle: 'Resposta recebida: "My name is Pedro."',
+                options: [
+                    { label: 'A', text: 'Who' },
+                    { label: 'B', text: 'Where' },
+                    { label: 'C', text: 'How old' },
+                    { label: 'D', text: 'What' }
+                ],
+                correctIndex: 3, // D
+                explanation: 'Usamos **WHAT** (Qual) para perguntar o nome de alguém ("What is your name?").'
+            },
+
+            // QUESTIONS 11 - 15: PERSONAL WRITING WITH SMART VALIDATION
+            {
+                id: 11,
+                type: 'personal',
+                title: 'How old are you?',
+                subtitle: 'Pergunta pessoal: Qual a sua idade? Responda em inglês completo.',
+                hint: 'Exemplos aceitos: "I am 9 years old", "I am 10", "I\'m 9 years old", "9 years old".',
+                validate: function(text) {
+                    const clean = text.trim().toLowerCase();
+                    if (!clean || clean.length < 2) {
+                        return { valid: false, reason: 'A resposta está muito curta ou vazia. Por favor, escreva sua idade em inglês.' };
+                    }
+                    // Pattern checks for age expression in English
+                    const hasNumber = /\b([0-9]|1[0-9]|20|seven|eight|nine|ten|eleven|twelve)\b/i.test(clean);
+                    const hasAmOrYears = /(i am|i'm|years old|years)/i.test(clean);
+
+                    if (hasNumber && (hasAmOrYears || clean.includes("am") || clean.includes("old"))) {
+                        return { valid: true, explanation: 'Excelente! Você estruturou corretamente a frase para indicar sua idade em inglês.' };
+                    }
+                    if (hasNumber && !hasAmOrYears) {
+                        return { valid: true, explanation: 'Boa! Lembre-se de que a frase completa ideal é: "I am [sua idade] years old".' };
+                    }
+                    return { valid: false, reason: 'Para indicar a idade em inglês, use a estrutura "I am [sua idade] years old" ou "I am [número]". Exemplo: "I am 9 years old".' };
+                }
+            },
+            {
+                id: 12,
+                type: 'personal',
+                title: 'What is your name?',
+                subtitle: 'Pergunta pessoal: Qual é o seu nome? Responda em inglês.',
+                hint: 'Exemplos aceitos: "My name is Lucas", "I am Maria", "I\'m Pedro".',
+                validate: function(text) {
+                    const clean = text.trim().toLowerCase();
+                    if (!clean || clean.length < 2) {
+                        return { valid: false, reason: 'Por favor, informe seu nome.' };
+                    }
+                    const startsWithPattern = /^(my name is|my name's|i am|i'm)\s+[a-zà-ú\s]{2,}$/i.test(clean);
+                    const words = clean.split(/\s+/);
+
+                    if (startsWithPattern) {
+                        return { valid: true, explanation: 'Perfeito! Frase estruturada corretamente em inglês com "My name is..." ou "I am...".' };
+                    }
+                    if (words.length === 1 && words[0].length >= 2) {
+                        return { valid: true, explanation: 'Resposta aceita! Para ficar ainda mais completo, escreva: "My name is ' + text.trim() + '".' };
+                    }
+                    if (clean.includes("name") || clean.includes("is") || clean.includes("am")) {
+                        return { valid: true, explanation: 'Muito bem! Você usou os elementos gramaticais corretos para se apresentar.' };
+                    }
+                    return { valid: false, reason: 'Utilize o padrão gramatical em inglês como "My name is [Seu Nome]" ou "I am [Seu Nome]".' };
+                }
+            },
+            {
+                id: 13,
+                type: 'personal',
+                title: 'Where do you live? / Where are you from?',
+                subtitle: 'Pergunta pessoal: Onde você mora ou de onde você é?',
+                hint: 'Exemplos aceitos: "I live in Brazil", "I live in São Paulo", "I am from Brazil".',
+                validate: function(text) {
+                    const clean = text.trim().toLowerCase();
+                    if (!clean || clean.length < 3) {
+                        return { valid: false, reason: 'Sua resposta está muito curta. Digite onde você mora.' };
+                    }
+                    const hasLiveIn = /(i live in|live in|i am from|i'm from)\s+[a-zà-ú\s]{2,}/i.test(clean);
+                    const mentionsLocation = (clean.includes("brazil") || clean.includes("brasil") || clean.includes("são paulo") || clean.includes("sao paulo") || clean.includes("city") || clean.includes("in "));
+
+                    if (hasLiveIn || (mentionsLocation && clean.length > 5)) {
+                        return { valid: true, explanation: 'Ótima resposta! Você usou a preposição de lugar adequada ("in" / "from").' };
+                    }
+                    return { valid: false, reason: 'Para responder sobre localização em inglês, use "I live in [Sua Cidade/País]" ou "I am from [Seu País]".' };
+                }
+            },
+            {
+                id: 14,
+                type: 'personal',
+                title: 'Who is your best friend?',
+                subtitle: 'Pergunta pessoal: Quem é o seu melhor amigo ou melhor amiga?',
+                hint: 'Exemplos aceitos: "My best friend is Gabriel", "It is Sofia", "His name is Leo".',
+                validate: function(text) {
+                    const clean = text.trim().toLowerCase();
+                    if (!clean || clean.length < 2) {
+                        return { valid: false, reason: 'Por favor, digite o nome do seu amigo em inglês.' };
+                    }
+                    const validStructure = /(my best friend is|best friend is|it is|it's|is my best friend)\s+[a-zà-ú\s]{2,}/i.test(clean);
+                    const words = clean.split(/\s+/);
+
+                    if (validStructure) {
+                        return { valid: true, explanation: 'Sensacional! Resposta bem elaborada identificando uma pessoa com "My best friend is...".' };
+                    }
+                    if (words.length >= 1 && words[0].length >= 2) {
+                        return { valid: true, explanation: 'Aceito! Na próxima, tente formular a frase completa: "My best friend is ' + text.trim() + '".' };
+                    }
+                    return { valid: false, reason: 'Resposta não identificada. Tente responder usando "My best friend is [Nome]".' };
+                }
+            },
+            {
+                id: 15,
+                type: 'personal',
+                title: 'What is your favorite sport?',
+                subtitle: 'Pergunta pessoal: Qual é o seu esporte favorito?',
+                hint: 'Exemplos aceitos: "My favorite sport is soccer", "I like soccer", "Soccer".',
+                validate: function(text) {
+                    const clean = text.trim().toLowerCase();
+                    if (!clean || clean.length < 3) {
+                        return { valid: false, reason: 'Por favor, escreva o nome do esporte em inglês.' };
+                    }
+                    const sportsList = /(soccer|football|volleyball|basketball|swimming|tennis|judo|running|futsal)/i.test(clean);
+                    const structure = /(my favorite sport is|i like|it is|it's)/i.test(clean);
+
+                    if (sportsList || structure) {
+                        return { valid: true, explanation: 'Golaço! Você respondeu corretamente sobre seu esporte favorito em inglês.' };
+                    }
+                    return { valid: false, reason: 'Especifique um esporte em inglês. Exemplo: "My favorite sport is soccer" (Meu esporte favorito é futebol).' };
+                }
+            },
+
+            // QUESTIONS 16 - 20: FILL-IN-THE-BLANKS
+            {
+                id: 16,
+                type: 'fill',
+                title: '____ is your English teacher? - Mr. Silva.',
+                subtitle: 'Complete a lacuna com a Question Word correta (Who, What, How old, Where):',
+                hint: 'Dica: A resposta identifica uma pessoa (Mr. Silva).',
+                correctAnswers: ['who'],
+                explanation: 'A resposta correta é **Who** porque "Mr. Silva" é uma pessoa (Quem é seu professor de inglês?).'
+            },
+            {
+                id: 17,
+                type: 'fill',
+                title: '____ do you play soccer? - At the stadium.',
+                subtitle: 'Complete a lacuna com a Question Word correta (Who, What, How old, Where):',
+                hint: 'Dica: A resposta indica um lugar ("At the stadium" - No estádio).',
+                correctAnswers: ['where'],
+                explanation: 'A resposta correta é **Where** porque "At the stadium" indica um local/lugar (Onde você joga futebol?).'
+            },
+            {
+                id: 18,
+                type: 'fill',
+                title: '____ is in your backpack? - A book and a pencil.',
+                subtitle: 'Complete a lacuna com a Question Word correta (Who, What, How old, Where):',
+                hint: 'Dica: A resposta lista objetos (um livro e um lápis).',
+                correctAnswers: ['what'],
+                explanation: 'A resposta correta é **What** porque pergunta sobre coisas/objetos que estão dentro da mochila (O que tem na sua mochila?).'
+            },
+            {
+                id: 19,
+                type: 'fill',
+                title: '____ is your sister? - She is 12 years old.',
+                subtitle: 'Complete a lacuna com a Question Word correta (Who, What, How old, Where):',
+                hint: 'Dica: A resposta refere-se à idade dela (12 anos).',
+                correctAnswers: ['how old'],
+                explanation: 'A resposta correta é **How old** porque estamos perguntando a idade da irmã (Quantos anos tem sua irmã?).'
+            },
+            {
+                id: 20,
+                type: 'fill',
+                title: '____ is your favorite color? - Red and white.',
+                subtitle: 'Complete a lacuna com a Question Word correta (Who, What, How old, Where):',
+                hint: 'Dica: A resposta refere-se às cores vermelho e branco.',
+                correctAnswers: ['what'],
+                explanation: 'A resposta correta é **What** porque "Red and white" são cores/coisas (Qual é a sua cor favorita?).'
+            }
+        ];
+
+        // STATE MANAGEMENT
+        let currentQuestionIndex = 0;
+        let userAnswers = Array(questionsData.length).fill(null); 
+        // Structure of userAnswers[i]: { confirmed: boolean, isCorrect: boolean, selectedIndex: number|null, textInput: string, feedbackMsg: string }
+        let totalScore = 0;
+
+        // DOM ELEMENTS
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const startBtn = document.getElementById('start-btn');
+
+        const questionNumberBadge = document.getElementById('question-number-badge');
+        const questionTypeBadge = document.getElementById('question-type-badge');
+        const questionTitle = document.getElementById('question-title');
+        const questionSubtitle = document.getElementById('question-subtitle');
+        const optionsContainer = document.getElementById('options-container');
+        const textInputContainer = document.getElementById('text-input-container');
+        const userTextAnswer = document.getElementById('user-text-answer');
+        const inputHint = document.getElementById('input-hint');
+
+        const confirmBtn = document.getElementById('confirm-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const finishQuizBtn = document.getElementById('finish-quiz-btn');
+
+        const feedbackBox = document.getElementById('feedback-box');
+        const feedbackIconBg = document.getElementById('feedback-icon-bg');
+        const feedbackIcon = document.getElementById('feedback-icon');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackText = document.getElementById('feedback-text');
+
+        const questionGrid = document.getElementById('question-grid');
+        const progressText = document.getElementById('progress-text');
+        const scoreText = document.getElementById('score-text');
+        const topScoreBadge = document.getElementById('top-score-badge');
+
+        const restartBtn = document.getElementById('restart-btn');
+        const reviewBtn = document.getElementById('review-btn');
+
+        // INITIALIZATION
+        window.onload = function() {
+            initQuestionGrid();
+            setupEventListeners();
+        };
+
+        function setupEventListeners() {
+            startBtn.addEventListener('click', startQuiz);
+            confirmBtn.addEventListener('click', confirmAnswer);
+            prevBtn.addEventListener('click', () => navigateQuestion(currentQuestionIndex - 1));
+            nextBtn.addEventListener('click', () => navigateQuestion(currentQuestionIndex + 1));
+            finishQuizBtn.addEventListener('click', finishQuiz);
+            restartBtn.addEventListener('click', restartQuiz);
+            reviewBtn.addEventListener('click', reviewQuiz);
+        }
+
+        function startQuiz() {
+            welcomeScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            topScoreBadge.classList.remove('hidden');
+            topScoreBadge.classList.add('flex');
+            loadQuestion(0);
+        }
+
+        // NAVIGATION MAP GENERATOR
+        function initQuestionGrid() {
+            questionGrid.innerHTML = '';
+            questionsData.forEach((q, index) => {
+                const btn = document.createElement('button');
+                btn.id = `grid-btn-${index}`;
+                btn.className = 'w-9 h-9 rounded-lg font-bold text-xs flex items-center justify-center transition border border-zinc-700 bg-zinc-800 text-zinc-300 hover:border-red-500';
+                btn.innerText = index + 1;
+                btn.addEventListener('click', () => navigateQuestion(index));
+                questionGrid.appendChild(btn);
+            });
+        }
+
+        function updateSidebarGrid() {
+            questionsData.forEach((q, index) => {
+                const btn = document.getElementById(`grid-btn-${index}`);
+                const state = userAnswers[index];
+
+                // Reset base classes
+                btn.className = 'w-9 h-9 rounded-lg font-bold text-xs flex items-center justify-center transition border ';
+
+                if (index === currentQuestionIndex) {
+                    btn.classList.add('ring-2', 'ring-white', 'scale-105');
+                }
+
+                if (state && state.confirmed) {
+                    if (state.isCorrect) {
+                        btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-500');
+                    } else {
+                        btn.classList.add('bg-red-600', 'text-white', 'border-red-500');
+                    }
+                } else {
+                    btn.classList.add('bg-zinc-800', 'text-zinc-300', 'border-zinc-700', 'hover:border-red-500');
+                }
+            });
+
+            // Update top progress bar text
+            const answeredCount = userAnswers.filter(a => a && a.confirmed).length;
+            progressText.innerText = `${answeredCount} / ${questionsData.length}`;
+            scoreText.innerText = `${totalScore} pts`;
+        }
+
+        // LOAD QUESTION LOGIC
+        function loadQuestion(index) {
+            if (index < 0 || index >= questionsData.length) return;
+            
+            currentQuestionIndex = index;
+            const q = questionsData[index];
+            const state = userAnswers[index];
+
+            // Badges & Headers
+            questionNumberBadge.innerText = `Question ${q.id} / ${questionsData.length}`;
+            questionTitle.innerText = q.title;
+            questionSubtitle.innerText = q.subtitle || '';
+
+            // Question Type Label
+            if (q.type === 'mc') {
+                questionTypeBadge.innerText = 'Multiple Choice';
+                optionsContainer.classList.remove('hidden');
+                textInputContainer.classList.add('hidden');
+                renderMultipleChoice(q, state);
+            } else if (q.type === 'personal') {
+                questionTypeBadge.innerText = 'Personal Answer';
+                optionsContainer.classList.add('hidden');
+                textInputContainer.classList.remove('hidden');
+                renderTextInput(q, state);
+            } else if (q.type === 'fill') {
+                questionTypeBadge.innerText = 'Fill in the Blank';
+                optionsContainer.classList.add('hidden');
+                textInputContainer.classList.remove('hidden');
+                renderTextInput(q, state);
+            }
+
+            // Update Prev/Next buttons state
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questionsData.length - 1;
+
+            // Handle Feedback Display
+            if (state && state.confirmed) {
+                confirmBtn.disabled = true;
+                showFeedback(state.isCorrect, state.feedbackMsg);
+            } else {
+                confirmBtn.disabled = false;
+                feedbackBox.classList.add('hidden');
+            }
+
+            updateSidebarGrid();
+        }
+
+        // RENDER MULTIPLE CHOICE
+        function renderMultipleChoice(q, state) {
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = 'w-full text-left p-4 rounded-xl border-2 border-zinc-800 bg-zinc-950 hover:bg-zinc-800/80 transition flex items-center justify-between text-zinc-200 font-medium group';
+                
+                if (state && state.selectedIndex === idx) {
+                    optBtn.classList.add('border-red-600', 'bg-red-950/30');
+                }
+
+                if (state && state.confirmed) {
+                    optBtn.disabled = true;
+                    if (idx === q.correctIndex) {
+                        optBtn.classList.remove('border-zinc-800', 'bg-zinc-950');
+                        optBtn.classList.add('border-emerald-500', 'bg-emerald-950/40', 'text-emerald-300');
+                    } else if (state.selectedIndex === idx && !state.isCorrect) {
+                        optBtn.classList.remove('border-zinc-800', 'bg-zinc-950');
+                        optBtn.classList.add('border-red-600', 'bg-red-950/40', 'text-red-300');
+                    }
+                } else {
+                    optBtn.addEventListener('click', () => {
+                        // Deselect others
+                        Array.from(optionsContainer.children).forEach(child => {
+                            child.classList.remove('border-red-600', 'bg-red-950/30');
+                            child.classList.add('border-zinc-800');
+                        });
+                        // Select current
+                        optBtn.classList.remove('border-zinc-800');
+                        optBtn.classList.add('border-red-600', 'bg-red-950/30');
+                        
+                        // Temporary save state
+                        if (!userAnswers[currentQuestionIndex]) {
+                            userAnswers[currentQuestionIndex] = {};
+                        }
+                        userAnswers[currentQuestionIndex].selectedIndex = idx;
+                    });
+                }
+
+                optBtn.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 rounded-lg bg-zinc-800 text-zinc-300 font-bold flex items-center justify-center group-hover:bg-red-600 group-hover:text-white transition">
+                            ${opt.label}
+                        </span>
+                        <span class="text-base">${opt.text}</span>
+                    </div>
+                    <i class="fa-regular fa-circle text-zinc-600 group-hover:text-red-500"></i>
+                `;
+
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        // RENDER TEXT INPUT
+        function renderTextInput(q, state) {
+            inputHint.innerText = q.hint || 'Atenção aos detalhes e ortografia em inglês!';
+            userTextAnswer.value = (state && state.textInput) ? state.textInput : '';
+
+            if (state && state.confirmed) {
+                userTextAnswer.disabled = true;
+                userTextAnswer.classList.add('opacity-75', 'bg-zinc-900');
+            } else {
+                userTextAnswer.disabled = false;
+                userTextAnswer.classList.remove('opacity-75', 'bg-zinc-900');
+                userTextAnswer.oninput = (e) => {
+                    if (!userAnswers[currentQuestionIndex]) {
+                        userAnswers[currentQuestionIndex] = {};
+                    }
+                    userAnswers[currentQuestionIndex].textInput = e.target.value;
+                };
+            }
+        }
+
+        // CONFIRM ANSWER ACTION
+        function confirmAnswer() {
+            const q = questionsData[currentQuestionIndex];
+            let isCorrect = false;
+            let feedbackMsg = '';
+            let state = userAnswers[currentQuestionIndex] || {};
+
+            if (q.type === 'mc') {
+                if (state.selectedIndex === undefined || state.selectedIndex === null) {
+                    alert('Por favor, selecione uma das opções antes de confirmar!');
+                    return;
+                }
+                isCorrect = state.selectedIndex === q.correctIndex;
+                if (isCorrect) {
+                    feedbackMsg = `**Parabéns, Campeão!** Você acertou! ${q.explanation}`;
+                } else {
+                    const correctChoice = q.options[q.correctIndex];
+                    feedbackMsg = `**Ops! Resposta Incorreta.** A opção correta é a letra **${correctChoice.label}) ${correctChoice.text}**. \n\n*Justificativa:* ${q.explanation}`;
+                }
+            } 
+            else if (q.type === 'personal') {
+                const textVal = userTextAnswer.value || '';
+                const validation = q.validate(textVal);
+
+                if (!validation.valid) {
+                    showFeedback(false, `**Atenção:** ${validation.reason}`);
+                    return; // Allow student to fix
+                }
+
+                isCorrect = true;
+                feedbackMsg = `**Excelente resposta!** ${validation.explanation}`;
+                state.textInput = textVal;
+            } 
+            else if (q.type === 'fill') {
+                const textVal = (userTextAnswer.value || '').trim().toLowerCase();
+                if (!textVal) {
+                    alert('Por favor, digite a palavra antes de confirmar!');
+                    return;
+                }
+
+                isCorrect = q.correctAnswers.includes(textVal);
+                state.textInput = textVal;
+
+                if (isCorrect) {
+                    feedbackMsg = `**Golaço!** Resposta perfeita! ${q.explanation}`;
+                } else {
+                    feedbackMsg = `**Não foi desta vez!** Você escreveu "${userTextAnswer.value}". A palavra correta para preencher a lacuna é **"${q.correctAnswers[0].toUpperCase()}"**. \n\n*Justificativa:* ${q.explanation}`;
+                }
+            }
+
+            // Save state permanently
+            state.confirmed = true;
+            state.isCorrect = isCorrect;
+            state.feedbackMsg = feedbackMsg;
+            userAnswers[currentQuestionIndex] = state;
+
+            if (isCorrect) {
+                totalScore += 10;
+            }
+
+            // Lock controls and render feedback
+            confirmBtn.disabled = true;
+            showFeedback(isCorrect, feedbackMsg);
+            
+            // Re-render current item view to apply locking styles
+            if (q.type === 'mc') renderMultipleChoice(q, state);
+            if (q.type === 'personal' || q.type === 'fill') renderTextInput(q, state);
+
+            updateSidebarGrid();
+        }
+
+        // SHOW FEEDBACK UI BOX
+        function showFeedback(isCorrect, message) {
+            feedbackBox.classList.remove('hidden', 'bg-emerald-950/40', 'border-emerald-600', 'bg-red-950/40', 'border-red-600');
+
+            if (isCorrect) {
+                feedbackBox.classList.add('bg-emerald-950/40', 'border-emerald-600', 'text-emerald-200');
+                feedbackIconBg.className = 'w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-emerald-600 text-white';
+                feedbackIcon.className = 'fa-solid fa-check';
+                feedbackTitle.innerText = 'Resposta Correta!';
+            } else {
+                feedbackBox.classList.add('bg-red-950/40', 'border-red-600', 'text-red-200');
+                feedbackIconBg.className = 'w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-red-600 text-white';
+                feedbackIcon.className = 'fa-solid fa-xmark';
+                feedbackTitle.innerText = 'Atenção / Correção';
+            }
+
+            // Formats bold markdown-like text
+            const formattedMsg = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>');
+            feedbackText.innerHTML = formattedMsg;
+        }
+
+        function navigateQuestion(newIndex) {
+            if (newIndex >= 0 && newIndex < questionsData.length) {
+                loadQuestion(newIndex);
+            }
+        }
+
+        // FINISH QUIZ & REPORT
+        function finishQuiz() {
+            const confirmedCount = userAnswers.filter(a => a && a.confirmed).length;
+            if (confirmedCount < questionsData.length) {
+                const confirmExit = confirm(`Você respondeu ${confirmedCount} de 20 questões. Tem certeza que deseja finalizar agora?`);
+                if (!confirmExit) return;
+            }
+
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            const correctCount = userAnswers.filter(a => a && a.confirmed && a.isCorrect).length;
+            const percentage = Math.round((correctCount / questionsData.length) * 100);
+
+            document.getElementById('final-correct').innerText = correctCount;
+            document.getElementById('final-percentage').innerText = `${percentage}%`;
+            document.getElementById('final-score').innerText = totalScore;
+
+            const trophyIcon = document.getElementById('trophy-icon');
+            const performanceTitle = document.getElementById('performance-title');
+            const performanceFeedback = document.getElementById('performance-feedback');
+
+            if (percentage >= 80) {
+                trophyIcon.className = 'fa-solid fa-trophy text-5xl text-yellow-400';
+                performanceTitle.innerText = 'DESEMPENHO DIGNO DE CAMPEÃO TRICOLOR!';
+                performanceFeedback.innerText = 'Parabéns! Você dominou o uso das Question Words em inglês. Continue assim e seja o craque da sua turma!';
+            } else if (percentage >= 50) {
+                trophyIcon.className = 'fa-solid fa-medal text-5xl text-zinc-300';
+                performanceTitle.innerText = 'BOM TRABALHO! VOCÊ ESTÁ NO CAMINHO CERTO!';
+                performanceFeedback.innerText = 'Você demonstrou um bom conhecimento, mas com um pouco mais de treino nas Question Words você vai alcançar o topo!';
+            } else {
+                trophyIcon.className = 'fa-solid fa-futbol text-5xl text-red-500';
+                performanceTitle.innerText = 'HORA DE REFORÇAR O TREINO!';
+                performanceFeedback.innerText = 'Não desanime! Revise a explicação inicial sobre Who, What, How old e Where e tente novamente para melhorar sua marca!';
+            }
+        }
+
+        function restartQuiz() {
+            userAnswers = Array(questionsData.length).fill(null);
+            totalScore = 0;
+            resultsScreen.classList.add('hidden');
+            welcomeScreen.classList.remove('hidden');
+            topScoreBadge.classList.add('hidden');
+        }
+
+        function reviewQuiz() {
+            resultsScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            loadQuestion(0);
+        }
+    </script>
+</body>
+</html>
